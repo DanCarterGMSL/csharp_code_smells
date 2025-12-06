@@ -1,162 +1,47 @@
-﻿namespace LongMethod
+﻿namespace LongMethod.test
+{
+    namespace OrderProcessorTests
 {
     [TestFixture]
     public class OrderProcessorTests
     {
         private OrderProcessor _processor;
-        private StringWriter _consoleOutput;
 
         [SetUp]
         public void Setup()
         {
             _processor = new OrderProcessor();
-            _consoleOutput = new StringWriter();
-            Console.SetOut(_consoleOutput);
-        }
-
-        [TearDown]
-        public void Teardown()
-        {
-            Console.SetOut(new StreamWriter(Console.OpenStandardOutput()));
         }
 
         [Test]
-        public void NullOrder_ShouldPrintError()
+        public void NullOrder_ShouldReturnWarning()
         {
-            _processor.ProcessOrder(null);
+            var invoice = _processor.ProcessOrder(null);
 
-            string output = _consoleOutput.ToString();
-            StringAssert.Contains("Order is null", output);
+            Assert.Contains("Order is null", invoice.Warnings);
+            Assert.That(invoice.Items.Count, Is.EqualTo(0));
+            Assert.That(invoice.Total, Is.EqualTo(0));
         }
 
         [Test]
-        public void MissingCustomerName_ShouldPrintError()
+        public void MissingCustomerName_ShouldReturnWarning()
         {
             var order = new Order { CustomerName = null, Items = new List<OrderItem>() };
+            var invoice = _processor.ProcessOrder(order);
 
-            _processor.ProcessOrder(order);
-
-            string output = _consoleOutput.ToString();
-            StringAssert.Contains("Customer name is missing", output);
+            Assert.Contains("Customer name is missing", invoice.Warnings);
         }
 
         [Test]
-        public void EmptyItems_ShouldPrintError()
+        public void EmptyItems_ShouldReturnWarning()
         {
             var order = new Order { CustomerName = "Alice", Items = new List<OrderItem>() };
+            var invoice = _processor.ProcessOrder(order);
 
-            _processor.ProcessOrder(order);
-
-            string output = _consoleOutput.ToString();
-            StringAssert.Contains("No items in order", output);
+            Assert.Contains("No items in order", invoice.Warnings);
+            Assert.That(invoice.Total, Is.EqualTo(0));
         }
 
-        [Test]
-        public void ValidOrder_ShouldPrintSummaryAndSendEmail()
-        {
-            var order = new Order
-            {
-                CustomerName = "Bob",
-                Items = new List<OrderItem>
-                {
-                    new OrderItem { Name = "Widget", Quantity = 2, Price = 100m },
-                    new OrderItem { Name = "Thing", Quantity = 1, Price = 50m }
-                }
-            };
-
-            _processor.ProcessOrder(order);
-
-            string output = _consoleOutput.ToString();
-
-            StringAssert.Contains("----- ORDER SUMMARY -----", output);
-            StringAssert.Contains("Customer: Bob", output);
-            StringAssert.Contains("Sending confirmation email...", output);
-            StringAssert.Contains("Email sent.", output);
-        }
-
-        [Test]
-        public void AppliesDiscount_WhenTotalIsOver500()
-        {
-            var order = new Order
-            {
-                CustomerName = "Eve",
-                Items = new List<OrderItem>
-                {
-                    new OrderItem { Name = "Gold Bar", Quantity = 1, Price = 600m }
-                }
-            };
-
-            _processor.ProcessOrder(order);
-
-            string output = _consoleOutput.ToString();
-
-            // after discount: 600 - 10% = 540
-            StringAssert.Contains("Total: £540.00", output); // assuming UK formatting
-        }
-
-        [Test]
-        public void Shipping_Is10_WhenTotalIsUnder50()
-        {
-            var order = new Order
-            {
-                CustomerName = "Small",
-                Items = new List<OrderItem>
-                {
-                    new OrderItem { Name = "Cheap", Quantity = 1, Price = 20m } // total = 20
-                }
-            };
-
-            _processor.ProcessOrder(order);
-
-            string output = _consoleOutput.ToString();
-
-            // Shipping added = 10 → total = 30
-            StringAssert.Contains("Shipping: £10.00", output);
-            StringAssert.Contains("Total: £30.00", output);
-        }
-
-        [Test]
-        public void Shipping_Is5_WhenTotalIsBetween50And200()
-        {
-            var order = new Order
-            {
-                CustomerName = "Medium",
-                Items = new List<OrderItem>
-                {
-                    new OrderItem { Name = "Something", Quantity = 1, Price = 150m } // total = 150
-                }
-            };
-
-            _processor.ProcessOrder(order);
-
-            string output = _consoleOutput.ToString();
-
-            // Shipping added = 5 → total = 155
-            StringAssert.Contains("Shipping: £5.00", output);
-            StringAssert.Contains("Total: £155.00", output);
-        }
-
-        [Test]
-        public void Shipping_Is0_WhenTotalIsOver200()
-        {
-            var order = new Order
-            {
-                CustomerName = "Big",
-                Items = new List<OrderItem>
-                {
-                    new OrderItem { Name = "Expensive", Quantity = 1, Price = 300m } // total = 300
-                }
-            };
-
-            _processor.ProcessOrder(order);
-
-            string output = _consoleOutput.ToString();
-
-            // Discount applies: 5% off 300 = 285
-            StringAssert.Contains("Shipping: £0.00", output);
-            StringAssert.Contains("Total: £285.00", output);
-        }
-        
         [Test]
         public void Item_WithZeroOrNegativeQuantity_ShouldBeSkipped()
         {
@@ -170,20 +55,16 @@
                 }
             };
 
-            _processor.ProcessOrder(order);
+            var invoice = _processor.ProcessOrder(order);
 
-            string output = _consoleOutput.ToString();
-
-            // Check that the invalid item produced a warning
-            StringAssert.Contains("Invalid quantity", output);
-
-            // Check that the valid item is included in the summary
-            StringAssert.Contains("Gadget x2 @ £50.00", output);
-
-            // Check total includes only the valid item
-            // total = 2*50 = 100; shipping = 5 (since 100 < 200); final total = 105
-            StringAssert.Contains("Shipping: £5.00", output);
-            StringAssert.Contains("Total: £105.00", output);
+            Assert.Contains("Invalid quantity for item: Widget", invoice.Warnings);
+            Assert.That(invoice.Items.Count, Is.EqualTo(1));
+            Assert.That(invoice.Items[0].Name, Is.EqualTo("Gadget"));
+            Assert.That(invoice.Items[0].Quantity, Is.EqualTo(2));
+            Assert.That(invoice.Items[0].Price, Is.EqualTo(50m));
+            Assert.That(invoice.Subtotal, Is.EqualTo(100m));
+            Assert.That(invoice.Shipping, Is.EqualTo(5m)); // shipping tier
+            Assert.That(invoice.Total, Is.EqualTo(105m));
         }
 
         [Test]
@@ -199,21 +80,118 @@
                 }
             };
 
-            _processor.ProcessOrder(order);
+            var invoice = _processor.ProcessOrder(order);
 
-            string output = _consoleOutput.ToString();
-
-            // Check that the invalid item produced a warning
-            StringAssert.Contains("Invalid price", output);
-
-            // Check that the valid item is included in the summary
-            StringAssert.Contains("Gadget x2 @ £50.00", output);
-
-            // total = 100, shipping = 5; final total = 105
-            StringAssert.Contains("Shipping: £5.00", output);
-            StringAssert.Contains("Total: £105.00", output);
+            Assert.Contains("Invalid price for item: Widget", invoice.Warnings);
+            Assert.That(invoice.Items.Count, Is.EqualTo(1));
+            Assert.That(invoice.Items[0].Name, Is.EqualTo("Gadget"));
+            Assert.That(invoice.Subtotal, Is.EqualTo(100m));
+            Assert.That(invoice.Shipping, Is.EqualTo(5m));
+            Assert.That(invoice.Total, Is.EqualTo(105m));
         }
 
+        [Test]
+        public void AppliesDiscount_WhenTotalOver500()
+        {
+            var order = new Order
+            {
+                CustomerName = "RichCustomer",
+                Items = new List<OrderItem>
+                {
+                    new OrderItem { Name = "Gold Bar", Quantity = 1, Price = 600m }
+                }
+            };
 
+            var invoice = _processor.ProcessOrder(order);
+
+            // Discount = 10% of 600 = 60
+            Assert.That(invoice.Subtotal, Is.EqualTo(600m));
+            Assert.That(invoice.Discount, Is.EqualTo(60m));
+            Assert.That(invoice.Shipping, Is.EqualTo(0m));  // total after discount = 540 > 200
+            Assert.That(invoice.Total, Is.EqualTo(540m));
+        }
+
+        [Test]
+        public void AppliesDiscount_WhenTotalOver200()
+        {
+            var order = new Order
+            {
+                CustomerName = "Customer",
+                Items = new List<OrderItem>
+                {
+                    new OrderItem { Name = "Item1", Quantity = 1, Price = 300m } // subtotal > 200
+                }
+            };
+
+            var invoice = _processor.ProcessOrder(order);
+
+            // Discount = 5% of 300 = 15
+            Assert.That(invoice.Subtotal, Is.EqualTo(300m));
+            Assert.That(invoice.Discount, Is.EqualTo(15m));
+            Assert.That(invoice.Shipping, Is.EqualTo(0m));  // total after discount = 285 > 200
+            Assert.That(invoice.Total, Is.EqualTo(285m));
+        }
+
+        [Test]
+        public void Shipping_Is10_WhenTotalUnder50()
+        {
+            var order = new Order
+            {
+                CustomerName = "SmallOrder",
+                Items = new List<OrderItem>
+                {
+                    new OrderItem { Name = "Cheap", Quantity = 1, Price = 20m }
+                }
+            };
+
+            var invoice = _processor.ProcessOrder(order);
+
+            Assert.That(invoice.Subtotal, Is.EqualTo(20m));
+            Assert.That(invoice.Discount, Is.EqualTo(0m));
+            Assert.That(invoice.Shipping, Is.EqualTo(10m));
+            Assert.That(invoice.Total, Is.EqualTo(30m));
+        }
+
+        [Test]
+        public void Shipping_Is5_WhenTotalBetween50And200()
+        {
+            var order = new Order
+            {
+                CustomerName = "MediumOrder",
+                Items = new List<OrderItem>
+                {
+                    new OrderItem { Name = "Item", Quantity = 1, Price = 150m }
+                }
+            };
+
+            var invoice = _processor.ProcessOrder(order);
+
+            Assert.That(invoice.Subtotal, Is.EqualTo(150m));
+            Assert.That(invoice.Discount, Is.EqualTo(0m));
+            Assert.That(invoice.Shipping, Is.EqualTo(5m));
+            Assert.That(invoice.Total, Is.EqualTo(155m));
+        }
+
+        [Test]
+        public void Shipping_Is0_WhenTotalOver200()
+        {
+            var order = new Order
+            {
+                CustomerName = "BigOrder",
+                Items = new List<OrderItem>
+                {
+                    new OrderItem { Name = "Expensive", Quantity = 1, Price = 300m }
+                }
+            };
+
+            var invoice = _processor.ProcessOrder(order);
+
+            Assert.That(invoice.Subtotal, Is.EqualTo(300m));
+            Assert.That(invoice.Discount, Is.EqualTo(15m)); // 5% discount
+            Assert.That(invoice.Shipping, Is.EqualTo(0m));
+            Assert.That(invoice.Total, Is.EqualTo(285m));
+        }
     }
+}
+
 }

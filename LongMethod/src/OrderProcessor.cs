@@ -1,98 +1,120 @@
 ﻿namespace LongMethod;
 
+using System.Collections.Generic;
+
 public class OrderProcessor
 {
-    public void ProcessOrder(Order order)
+    public Invoice ProcessOrder(Order order)
     {
-        // Validate
+        var invoice = new Invoice
+        {
+            CustomerName = order?.CustomerName,
+            Items = new List<InvoiceItem>(),
+            Warnings = new List<string>()
+        };
+
         if (order == null)
         {
-            Console.WriteLine("Order is null");
-            return;
+            invoice.Warnings.Add("Order is null");
+            return invoice;
         }
 
+        // check if customer name is missing
         if (string.IsNullOrEmpty(order.CustomerName))
+            invoice.Warnings.Add("Customer name is missing");
+
+        // check if order is empty
+        if (order.Items.Count == 0)
         {
-            Console.WriteLine("Customer name is missing");
-            return;
+            invoice.Warnings.Add("No items in order");
+            return invoice;
         }
 
-        if (order.Items == null || order.Items.Count == 0)
-        {
-            Console.WriteLine("No items in order");
-            return;
-        }
+        decimal subtotal = 0;
 
-        // Calculate total
-        decimal total = 0;
         foreach (var item in order.Items)
         {
             if (item.Quantity <= 0)
             {
-                Console.WriteLine("Invalid quantity");
+                invoice.Warnings.Add($"Invalid quantity for item: {item.Name}");
                 continue;
             }
 
             if (item.Price < 0)
             {
-                Console.WriteLine("Invalid price");
+                invoice.Warnings.Add($"Invalid price for item: {item.Name}");
                 continue;
             }
 
-            total += item.Price * item.Quantity;
+            // calculate item subtotal
+            decimal totalItemPrice = item.Price * item.Quantity;
+            subtotal += totalItemPrice;
+
+            invoice.Items.Add(new InvoiceItem
+            {
+                Name = item.Name,
+                Quantity = item.Quantity,
+                Price = item.Price,
+                Total = totalItemPrice
+            });
         }
 
-        // Apply discounts
-        if (total > 500)
-        {
-            total -= total * 0.10m; // 10% discount
-        }
-        else if (total > 200)
-        {
-            total -= total * 0.05m; // 5% discount
-        }
+        // Apply discount
+        decimal discount = 0;
+        
+        // 10% discount on orders over £500
+        if (subtotal > 500) discount = subtotal * 0.10m;
+        // 5% discount on orders over £200, up to £500
+        else if (subtotal > 200) discount = subtotal * 0.05m; 
+
+        decimal totalAfterDiscount = subtotal - discount;
 
         // Shipping
-        decimal shipping = 0;
-        if (total < 50)
-        {
-            shipping = 10;
-        }
-        else if (total < 200)
-        {
-            shipping = 5;
-        }
+        decimal shipping = 0; // shipping is free on orders >= £200
+        if (totalAfterDiscount < 50) shipping = 10;
+        else if (totalAfterDiscount < 200) shipping = 5;
 
-        total += shipping;
+        decimal total = totalAfterDiscount + shipping;
 
-        // Print summary
-        Console.WriteLine("----- ORDER SUMMARY -----");
-        Console.WriteLine("Customer: " + order.CustomerName);
-        Console.WriteLine("Items:");
-        foreach (var item in order.Items)
-        {
-            Console.WriteLine($"{item.Name} x{item.Quantity} @ {item.Price:C}");
-        }
-        Console.WriteLine("-------------------------");
-        Console.WriteLine("Shipping: " + shipping.ToString("C"));
-        Console.WriteLine("Total: " + total.ToString("C"));
-        Console.WriteLine("-------------------------");
+        invoice.Subtotal = subtotal;
+        invoice.Discount = discount;
+        invoice.Shipping = shipping;
+        invoice.Total = total;
 
-        // Send confirmation email
-        Console.WriteLine("Sending confirmation email...");
-        Console.WriteLine("Email sent.");
+        return invoice;
     }
 }
 
+// Order and Items
 public class Order
 {
-    public string CustomerName { get; set; }
-    public List<OrderItem> Items { get; set; }
+    public string? CustomerName { get; init; }
+    public List<OrderItem>? Items { get; init; }
 }
 
 public class OrderItem
 {
-    public string Name { get; set; }
-    public int Quantity { get; set; }
-    public decimal Price { get; set; }
+    public string? Name { get; init; }
+    public int Quantity { get; init; }
+    public decimal Price { get; init; }
+}
+
+// Invoice Classes
+public class Invoice
+{
+    public string? CustomerName { get; set; }
+    public List<InvoiceItem>? Items { get; init; }
+    public decimal Subtotal { get; set; }
+    public decimal Discount { get; set; }
+    public decimal Shipping { get; set; }
+    public decimal Total { get; set; }
+    public List<string>? Warnings { get; init; }
+}
+
+public class InvoiceItem
+{
+    public string? Name { get; init; }
+    public int Quantity { get; init; }
+    public decimal Price { get; init; }
+    public decimal Total { get; set; }
 }
