@@ -3,6 +3,7 @@
 # Build outputs
 **/[Bb]in/*
 **/[Dd]ebug/*
+**/obj/*
 
 # NUnit
 *.VisualState.xml
