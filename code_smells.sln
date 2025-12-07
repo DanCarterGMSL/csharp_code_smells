@@ -12,6 +12,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Duplication", "Duplication\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Duplication.Test", "Duplication.Test\Duplication.Test.csproj", "{4845E394-77CC-4450-B895-ADF104788994}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DivergentChange", "DivergentChange\DivergentChange.csproj", "{537F0A3A-726A-4CBE-9DFF-E82EA08C1CBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DivergentChange.Test", "DivergentChange.Test\DivergentChange.Test.csproj", "{0E383043-78A1-4269-ACD9-86CE53E2EE20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +46,13 @@ Global
 		{4845E394-77CC-4450-B895-ADF104788994}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4845E394-77CC-4450-B895-ADF104788994}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4845E394-77CC-4450-B895-ADF104788994}.Release|Any CPU.Build.0 = Release|Any CPU
+		{537F0A3A-726A-4CBE-9DFF-E82EA08C1CBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{537F0A3A-726A-4CBE-9DFF-E82EA08C1CBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{537F0A3A-726A-4CBE-9DFF-E82EA08C1CBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{537F0A3A-726A-4CBE-9DFF-E82EA08C1CBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E383043-78A1-4269-ACD9-86CE53E2EE20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E383043-78A1-4269-ACD9-86CE53E2EE20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E383043-78A1-4269-ACD9-86CE53E2EE20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E383043-78A1-4269-ACD9-86CE53E2EE20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
