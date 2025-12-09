@@ -28,6 +28,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureEnvy", "FeatureEnvy\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureEnvy.Test", "FeatureEnvy.Test\FeatureEnvy.Test.csproj", "{8637AD9D-9377-435C-820F-36CB9F898B4B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimitiveObsession", "PrimitiveObsession\PrimitiveObsession.csproj", "{052622D9-E85D-41C6-883C-2F9630E5DE49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimitiveObsession.Test", "PrimitiveObsession.Test\PrimitiveObsession.Test.csproj", "{00A597B5-41AC-4AF8-BAD0-C68AE20FB01C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,5 +94,13 @@ Global
 		{8637AD9D-9377-435C-820F-36CB9F898B4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8637AD9D-9377-435C-820F-36CB9F898B4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8637AD9D-9377-435C-820F-36CB9F898B4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{052622D9-E85D-41C6-883C-2F9630E5DE49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{052622D9-E85D-41C6-883C-2F9630E5DE49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{052622D9-E85D-41C6-883C-2F9630E5DE49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{052622D9-E85D-41C6-883C-2F9630E5DE49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00A597B5-41AC-4AF8-BAD0-C68AE20FB01C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00A597B5-41AC-4AF8-BAD0-C68AE20FB01C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00A597B5-41AC-4AF8-BAD0-C68AE20FB01C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00A597B5-41AC-4AF8-BAD0-C68AE20FB01C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
