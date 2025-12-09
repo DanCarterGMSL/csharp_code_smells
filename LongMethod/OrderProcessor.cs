@@ -7,8 +7,24 @@ public class OrderProcessor
     public Invoice ProcessOrder(Order order)
     {
         // check if order is invalid
-        
-        Validate(order);
+
+        // can't be null
+        if (order == null)
+        {
+            throw new InvalidOrderException("Order is null");
+        }
+
+        // check if customer name is missing
+        if (string.IsNullOrEmpty(order.CustomerName))
+        {
+            throw new InvalidOrderException("Customer name is missing");
+        }
+
+        // check if order is empty
+        if (order.Items.Count == 0)
+        {
+            throw new InvalidOrderException("No items in order");
+        }
 
         var invoice = new Invoice
         {
@@ -18,8 +34,37 @@ public class OrderProcessor
         };
 
         // subtotal order items
-        
-        var subtotal = SubtotalOrder(order, invoice);
+
+        decimal subtotal1 = 0;
+
+        foreach (var item in order.Items)
+        {
+            if (item.Quantity <= 0)
+            {
+                invoice.Warnings.Add($"Invalid quantity for item: {item.Name}");
+                continue;
+            }
+
+            if (item.Price < 0)
+            {
+                invoice.Warnings.Add($"Invalid price for item: {item.Name}");
+                continue;
+            }
+
+            // calculate item subtotal
+            decimal totalItemPrice = item.Price * item.Quantity;
+            subtotal1 += totalItemPrice;
+
+            invoice.Items.Add(new InvoiceItem
+            {
+                Name = item.Name,
+                Quantity = item.Quantity,
+                Price = item.Price,
+                Total = totalItemPrice
+            });
+        }
+
+        var subtotal = subtotal1;
 
         // Apply discount
         
@@ -46,61 +91,6 @@ public class OrderProcessor
         invoice.Total = total;
 
         return invoice;
-    }
-
-    private decimal SubtotalOrder(Order? order, Invoice invoice)
-    {
-        decimal subtotal = 0;
-
-        foreach (var item in order.Items)
-        {
-            if (item.Quantity <= 0)
-            {
-                invoice.Warnings.Add($"Invalid quantity for item: {item.Name}");
-                continue;
-            }
-
-            if (item.Price < 0)
-            {
-                invoice.Warnings.Add($"Invalid price for item: {item.Name}");
-                continue;
-            }
-
-            // calculate item subtotal
-            decimal totalItemPrice = item.Price * item.Quantity;
-            subtotal += totalItemPrice;
-
-            invoice.Items.Add(new InvoiceItem
-            {
-                Name = item.Name,
-                Quantity = item.Quantity,
-                Price = item.Price,
-                Total = totalItemPrice
-            });
-        }
-
-        return subtotal;
-    }
-
-    private void Validate(Order order)
-    {
-        // can't be null
-        if (order == null)
-        {
-            throw new InvalidOrderException("Order is null");
-        }
-
-        // check if customer name is missing
-        if (string.IsNullOrEmpty(order.CustomerName))
-        {
-            throw new InvalidOrderException("Customer name is missing");
-        }
-
-        // check if order is empty
-        if (order.Items.Count == 0)
-        {
-            throw new InvalidOrderException("No items in order");
-        }
     }
 }
 
