@@ -78,11 +78,7 @@ public class OrderProcessor
 
     private static void Validate(Order order)
     {
-        // can't be null
-        if (order == null)
-        {
-            throw new InvalidOrderException("Order is null");
-        }
+        ValidateOrderIsNotNull(order);
 
         // check if customer name is missing
         if (string.IsNullOrEmpty(order.CustomerName))
@@ -94,6 +90,14 @@ public class OrderProcessor
         if (order.Items.Count == 0)
         {
             throw new InvalidOrderException("No items in order");
+        }
+    }
+
+    private static void ValidateOrderIsNotNull(Order order)
+    {
+        if (order == null)
+        {
+            throw new InvalidOrderException("Order is null");
         }
     }
 }
