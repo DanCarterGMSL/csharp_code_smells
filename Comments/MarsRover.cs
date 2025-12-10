@@ -61,48 +61,58 @@ public class MarsRover
 
         if (instruction == MoveForwardInstruction)
         {
-            if (Facing == North)
-            {
-                IncrementY();
-            }
-
-            if (Facing == East)
-            {
-                IncrementX();
-            }
-
-            if (Facing == South)
-            {
-                DecrementY();
-            }
-
-            if (Facing == West)
-            {
-                DecrementX();
-            }
+            MoveForward();
         }
 
         if (instruction == MoveBackwardInstruction)
         {
-            if (Facing == North)
-            {
-                DecrementY();
-            }
+            MoveBackward();
+        }
+    }
 
-            if (Facing == East)
-            {
-                DecrementX();
-            }
+    private void MoveBackward()
+    {
+        if (Facing == North)
+        {
+            DecrementY();
+        }
 
-            if (Facing == South)
-            {
-                IncrementY();
-            }
+        if (Facing == East)
+        {
+            DecrementX();
+        }
 
-            if (Facing == West)
-            {
-                IncrementX();
-            }
+        if (Facing == South)
+        {
+            IncrementY();
+        }
+
+        if (Facing == West)
+        {
+            IncrementX();
+        }
+    }
+
+    private void MoveForward()
+    {
+        if (Facing == North)
+        {
+            IncrementY();
+        }
+
+        if (Facing == East)
+        {
+            IncrementX();
+        }
+
+        if (Facing == South)
+        {
+            DecrementY();
+        }
+
+        if (Facing == West)
+        {
+            DecrementX();
         }
     }
 
