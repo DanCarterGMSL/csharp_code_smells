@@ -43,7 +43,7 @@ public class OrderProcessor
             };
             invoice.Items.Add(invoiceItem);
 
-            subtotal1 += totalItemPrice;
+            subtotal1 += invoiceItem.Total;
         }
 
         var subtotal2 = subtotal1;
