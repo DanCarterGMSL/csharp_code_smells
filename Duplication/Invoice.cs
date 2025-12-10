@@ -35,8 +35,7 @@ public class Invoice
 
         if (_item1 != null)
         {
-            var subtotal1 = GetTotal(_item1);
-            total += subtotal1;
+            total += GetTotal(_item1);
         }
 
         if (_item2 != null)
