@@ -21,7 +21,7 @@ public class Invoice
     private readonly Item? _item5;
     private readonly Item?[] _items;
 
-    public Invoice(Item? item1, Item? item2, Item? item3, Item? item4, Item? item5)
+    public Invoice(Item? item1, Item? item2, Item? item3, Item? item4, Item? item5, Item?[] items)
     {
         _item1 = item1;
         _item2 = item2;
@@ -29,7 +29,7 @@ public class Invoice
         _item4 = item4;
         _item5 = item5;
 
-        _items = new[] { item1, item2, item3, item4, item5 };
+        _items = items;
     }
 
     public double CalculateTotal()
