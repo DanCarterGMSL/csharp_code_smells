@@ -11,10 +11,7 @@ public class Item
         Quantity = quantity;
     }
 
-    public double Total()
-    {
-        return Price * Quantity;
-    }
+    public double Total() => Price * Quantity;
 }
 
 public class Invoice
@@ -26,10 +23,8 @@ public class Invoice
         _items = items;
     }
 
-    public double CalculateTotal()
-    {
-        return _items
+    public double CalculateTotal() => 
+        _items
             .OfType<Item>()
             .Sum(item => item.Total());
-    }
 }
