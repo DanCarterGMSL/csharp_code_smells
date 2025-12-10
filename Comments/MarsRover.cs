@@ -51,7 +51,10 @@ public class MarsRover
                 return;
             }
 
-            Facing = North;
+            if (Facing == West)
+            {
+                Facing = North;
+            }
         }
 
         if (instruction == TurnLeftInstruction)
