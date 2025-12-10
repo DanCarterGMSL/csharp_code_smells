@@ -15,8 +15,6 @@ public class OrderProcessor
             Warnings = new List<string>()
         };
 
-        decimal subtotal1 = 0;
-
         foreach (var item in order.Items)
         {
             if (item.Quantity <= 0)
@@ -31,7 +29,6 @@ public class OrderProcessor
                 continue;
             }
 
-            // calculate item subtotal
             decimal totalItemPrice = item.Price * item.Quantity;
 
             var invoiceItem = new InvoiceItem
@@ -44,13 +41,7 @@ public class OrderProcessor
             invoice.Items.Add(invoiceItem);
         }
 
-        foreach (var invoiceItem in invoice.Items)
-        {
-            subtotal1 += invoiceItem.Total;
-        }
-
-        var subtotal2 = subtotal1;
-        var subtotal = subtotal2;
+        var subtotal = CalculateInvoiceSubtotal(invoice);
 
         var discount = CalculateDiscount(subtotal);
 
@@ -67,6 +58,18 @@ public class OrderProcessor
         invoice.Total = total;
 
         return invoice;
+    }
+
+    private static decimal CalculateInvoiceSubtotal(Invoice invoice)
+    {
+        decimal subtotal1 = 0;
+
+        foreach (var invoiceItem in invoice.Items)
+        {
+            subtotal1 += invoiceItem.Total;
+        }
+
+        return subtotal1;
     }
 
     private static decimal CalculateShipping(decimal totalAfterDiscount)
