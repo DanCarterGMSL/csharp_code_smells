@@ -84,8 +84,7 @@ public class MarsRover
 
             if (Facing == East)
             {
-                // X + 1
-                Coordinates[0] += 1;
+                IncrementX();
             }
 
             if (Facing == South)
@@ -120,10 +119,14 @@ public class MarsRover
 
             if (Facing == West)
             {
-                // X + 1
-                Coordinates[0] += 1;
+                IncrementX();
             }
         }
+    }
+
+    private void IncrementX()
+    {
+        Coordinates[0] += 1;
     }
 
     private void DecrementY()
