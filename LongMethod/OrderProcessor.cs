@@ -15,35 +15,6 @@ public class OrderProcessor
             Warnings = new List<string>()
         };
 
-        var subtotal = CalculateSubtotalAndAddWarnings(order, invoice);
-
-        var discount = CalculateDiscount(subtotal);
-
-        invoice.Discount = discount;
-
-        decimal totalAfterDiscount = subtotal - discount;
-
-        var shipping = CalculateShipping(totalAfterDiscount);
-
-        decimal total = totalAfterDiscount + shipping;
-
-        invoice.Subtotal = subtotal;
-        invoice.Shipping = shipping;
-        invoice.Total = total;
-
-        return invoice;
-    }
-
-    private static decimal CalculateShipping(decimal totalAfterDiscount)
-    {
-        decimal shipping = 0; // shipping is free on orders >= £200
-        if (totalAfterDiscount < 50) shipping = 10;
-        else if (totalAfterDiscount < 200) shipping = 5;
-        return shipping;
-    }
-
-    private static decimal CalculateSubtotalAndAddWarnings(Order? order, Invoice invoice)
-    {
         decimal subtotal1 = 0;
 
         foreach (var item in order.Items)
@@ -73,8 +44,32 @@ public class OrderProcessor
             });
         }
 
-        var subtotal = subtotal1;
-        return subtotal;
+        var subtotal2 = subtotal1;
+        var subtotal = subtotal2;
+
+        var discount = CalculateDiscount(subtotal);
+
+        invoice.Discount = discount;
+
+        decimal totalAfterDiscount = subtotal - discount;
+
+        var shipping = CalculateShipping(totalAfterDiscount);
+
+        decimal total = totalAfterDiscount + shipping;
+
+        invoice.Subtotal = subtotal;
+        invoice.Shipping = shipping;
+        invoice.Total = total;
+
+        return invoice;
+    }
+
+    private static decimal CalculateShipping(decimal totalAfterDiscount)
+    {
+        decimal shipping = 0; // shipping is free on orders >= £200
+        if (totalAfterDiscount < 50) shipping = 10;
+        else if (totalAfterDiscount < 200) shipping = 5;
+        return shipping;
     }
 
     private static decimal CalculateDiscount(decimal subtotal)
