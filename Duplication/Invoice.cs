@@ -16,7 +16,7 @@ public class Invoice
 {
     private readonly Item?[] _items;
 
-    public Invoice(Item? item1, Item? item2, Item? item3, Item? item4, Item? item5, Item?[] items)
+    public Invoice(Item?[] items)
     {
         _items = items;
     }

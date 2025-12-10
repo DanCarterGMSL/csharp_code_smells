@@ -14,7 +14,7 @@ public class InvoiceTests
         var item4 = new Item(2.0, 5);  // 10
         var item5 = new Item(12.0, 1); // 12
 
-        var invoice = new Invoice(item1, item2, item3, item4, item5, new[] { item1, item2, item3, item4, item5 });
+        var invoice = new Invoice(new[] { item1, item2, item3, item4, item5 });
 
         double expectedTotal = 20 + 15 + 7.5 + 10 + 12;
 
@@ -30,7 +30,7 @@ public class InvoiceTests
         Item item4 = null;
         var item5 = new Item(12.0, 1); // 12
 
-        var invoice = new Invoice(item1, item2, item3, item4, item5, new[] { item1, item2, item3, item4, item5 });
+        var invoice = new Invoice(new[] { item1, item2, item3, item4, item5 });
 
         double expectedTotal = 20 + 7.5 + 12;
 
@@ -40,7 +40,7 @@ public class InvoiceTests
     [Test]
     public void CalculateTotal_AllItemsNull_ReturnsZero()
     {
-        var invoice = new Invoice(null, null, null, null, null, new Item?[] { null, null, null, null, null });
+        var invoice = new Invoice(new Item?[] { null, null, null, null, null });
 
         Assert.That(invoice.CalculateTotal(), Is.EqualTo(0.0));
     }
@@ -49,7 +49,7 @@ public class InvoiceTests
     public void CalculateTotal_SingleItemOnly_ReturnsSingleSubtotal()
     {
         var item1 = new Item(15.0, 3); // 45
-        var invoice = new Invoice(item1, null, null, null, null, new[] { item1, null, null, null, null });
+        var invoice = new Invoice(new[] { item1, null, null, null, null });
 
         Assert.That(invoice.CalculateTotal(), Is.EqualTo(45.0));
     }
@@ -59,7 +59,7 @@ public class InvoiceTests
     {
         var item1 = new Item(10.0, 0); // 0
         var item2 = new Item(5.0, 2);  // 10
-        var invoice = new Invoice(item1, item2, null, null, null, new[] { item1, item2, null, null, null });
+        var invoice = new Invoice(new[] { item1, item2, null, null, null });
 
         double expectedTotal = 0 + 10;
 
