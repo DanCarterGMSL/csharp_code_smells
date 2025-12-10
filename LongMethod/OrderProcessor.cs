@@ -82,7 +82,11 @@ public class OrderProcessor
 
         ValidateCustomerNameIsNotMissing(order);
 
-        // check if order is empty
+        ValidateOrderIsNotEmpty(order);
+    }
+
+    private static void ValidateOrderIsNotEmpty(Order order)
+    {
         if (order.Items.Count == 0)
         {
             throw new InvalidOrderException("No items in order");
