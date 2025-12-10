@@ -3,6 +3,7 @@
 public class MarsRover
 {
     private const string North = "N";
+    private const string East = "E";
     public string Facing { get; private set; }
     public int[] Coordinates { get; }
 
@@ -27,12 +28,11 @@ public class MarsRover
         {
             if (Facing == North)
             {
-                // E = East
-                Facing = "E";
+                Facing = East;
                 return;
             }
 
-            if (Facing == "E")
+            if (Facing == East)
             {
                 // S = South
                 Facing = "S";
@@ -66,7 +66,7 @@ public class MarsRover
 
             if (Facing == "S")
             {
-                Facing = "E";
+                Facing = East;
                 return;
             }
 
@@ -82,7 +82,7 @@ public class MarsRover
                 Coordinates[1] = Coordinates[1] + 1;
             }
 
-            if (Facing == "E")
+            if (Facing == East)
             {
                 // X + 1
                 Coordinates[0] = Coordinates[0] + 1;
@@ -109,7 +109,7 @@ public class MarsRover
                 Coordinates[1] = Coordinates[1] - 1;
             }
 
-            if (Facing == "E")
+            if (Facing == East)
             {
                 // X - 1
                 Coordinates[0] = Coordinates[0] - 1;
