@@ -25,6 +25,11 @@ public class Invoice
     {
         return _items
             .OfType<Item>()
-            .Sum(item => item.Price * item.Quantity);
+            .Sum(item => Total(item));
+    }
+
+    private static double Total(Item item)
+    {
+        return item.Price * item.Quantity;
     }
 }
