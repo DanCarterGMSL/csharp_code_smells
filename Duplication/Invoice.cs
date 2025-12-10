@@ -32,7 +32,7 @@ public class Invoice
         _items = items;
     }
 
-    public double CalculateTotal2()
+    public double CalculateTotal()
     {
         double total = 0.0;
         foreach (var item in _items)
@@ -45,10 +45,5 @@ public class Invoice
         }
 
         return total;
-    }
-
-    public double CalculateTotal()
-    {
-        return CalculateTotal2();
     }
 }
