@@ -36,6 +36,11 @@ using System.Linq;
         public decimal CalculateShipping(string region)
         {
             decimal total = CalculateTotal();
+            return CalculatingShippingCost(region, total);
+        }
+
+        private static decimal CalculatingShippingCost(string region, decimal total)
+        {
             decimal shipping;
 
             if (region == "EU")
