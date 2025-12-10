@@ -23,16 +23,8 @@ public class Invoice
 
     public double CalculateTotal()
     {
-        double total = 0.0;
-        foreach (var item in _items)
-        {
-            if (item != null)
-            {
-                double subtotal = item.Price * item.Quantity;
-                total += subtotal;
-            }
-        }
-
-        return total;
+        return _items
+            .OfType<Item>()
+            .Sum(item => item.Price * item.Quantity);
     }
 }
