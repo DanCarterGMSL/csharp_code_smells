@@ -6,7 +6,6 @@ public class OrderProcessor
 {
     public Invoice ProcessOrder(Order order)
     {
-        // check if order is invalid
         Validate(order);
 
         var invoice = new Invoice
@@ -15,8 +14,6 @@ public class OrderProcessor
             Items = new List<InvoiceItem>(),
             Warnings = new List<string>()
         };
-
-        // subtotal order items
 
         var subtotal = CalculateSubtotalAndAddWarnings(order, invoice);
 
