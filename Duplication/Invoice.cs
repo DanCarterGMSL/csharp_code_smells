@@ -50,39 +50,5 @@ public class Invoice
     public double CalculateTotal()
     {
         return CalculateTotal2();
-
-        double total = 0.0;
-
-        if (_item1 != null)
-        {
-            double subtotal1 = _item1.Price * _item1.Quantity;
-            total += subtotal1;
-        }
-
-        if (_item2 != null)
-        {
-            double subtotal2 = _item2.Price * _item2.Quantity;
-            total += subtotal2;
-        }
-
-        if (_item3 != null)
-        {
-            double subtotal3 = _item3.Price * _item3.Quantity;
-            total += subtotal3;
-        }
-
-        if (_item4 != null)
-        {
-            double subtotal4 = _item4.Price * _item4.Quantity;
-            total += subtotal4;
-        }
-
-        if (_item5 != null)
-        {
-            double subtotal5 = _item5.Price * _item5.Quantity;
-            total += subtotal5;
-        }
-
-        return total;
     }
 }
