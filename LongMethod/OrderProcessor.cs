@@ -80,16 +80,20 @@ public class OrderProcessor
     {
         ValidateOrderIsNotNull(order);
 
-        // check if customer name is missing
-        if (string.IsNullOrEmpty(order.CustomerName))
-        {
-            throw new InvalidOrderException("Customer name is missing");
-        }
+        ValidateCustomerNameIsNotMissing(order);
 
         // check if order is empty
         if (order.Items.Count == 0)
         {
             throw new InvalidOrderException("No items in order");
+        }
+    }
+
+    private static void ValidateCustomerNameIsNotMissing(Order order)
+    {
+        if (string.IsNullOrEmpty(order.CustomerName))
+        {
+            throw new InvalidOrderException("Customer name is missing");
         }
     }
 
