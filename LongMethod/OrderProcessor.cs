@@ -18,6 +18,30 @@ public class OrderProcessor
 
         // subtotal order items
 
+        var subtotal = CalculateSubtotalAndAddWarnings(order, invoice);
+
+        var discount = CalculateDiscount(subtotal);
+
+        invoice.Discount = discount;
+
+        decimal totalAfterDiscount = subtotal - discount;
+
+        // Shipping
+        decimal shipping = 0; // shipping is free on orders >= £200
+        if (totalAfterDiscount < 50) shipping = 10;
+        else if (totalAfterDiscount < 200) shipping = 5;
+
+        decimal total = totalAfterDiscount + shipping;
+
+        invoice.Subtotal = subtotal;
+        invoice.Shipping = shipping;
+        invoice.Total = total;
+
+        return invoice;
+    }
+
+    private static decimal CalculateSubtotalAndAddWarnings(Order? order, Invoice invoice)
+    {
         decimal subtotal1 = 0;
 
         foreach (var item in order.Items)
@@ -48,25 +72,7 @@ public class OrderProcessor
         }
 
         var subtotal = subtotal1;
-
-        var discount = CalculateDiscount(subtotal);
-
-        invoice.Discount = discount;
-
-        decimal totalAfterDiscount = subtotal - discount;
-
-        // Shipping
-        decimal shipping = 0; // shipping is free on orders >= £200
-        if (totalAfterDiscount < 50) shipping = 10;
-        else if (totalAfterDiscount < 200) shipping = 5;
-
-        decimal total = totalAfterDiscount + shipping;
-
-        invoice.Subtotal = subtotal;
-        invoice.Shipping = shipping;
-        invoice.Total = total;
-
-        return invoice;
+        return subtotal;
     }
 
     private static decimal CalculateDiscount(decimal subtotal)
