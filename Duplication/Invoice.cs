@@ -20,7 +20,7 @@ public class Invoice
     private readonly Item? _item4;
     private readonly Item? _item5;
 
-    public Invoice(Item? item1, Item? item2, Item? item3, Item? item4, Item? item5)
+    public Invoice(Item? item1, Item? item2, Item? item3, Item? item4, Item? item5, Item[] Items)
     {
         _item1 = item1;
         _item2 = item2;
