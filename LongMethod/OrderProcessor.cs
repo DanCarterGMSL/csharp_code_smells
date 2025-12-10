@@ -42,7 +42,10 @@ public class OrderProcessor
                 Total = totalItemPrice
             };
             invoice.Items.Add(invoiceItem);
+        }
 
+        foreach (var invoiceItem in invoice.Items)
+        {
             subtotal1 += invoiceItem.Total;
         }
 
