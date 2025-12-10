@@ -35,7 +35,7 @@ public class Invoice
 
         if (_item1 != null)
         {
-            var subtotal1 = GetTotal();
+            var subtotal1 = GetTotal(_item1);
             total += subtotal1;
         }
 
@@ -66,9 +66,9 @@ public class Invoice
         return total;
     }
 
-    private double GetTotal()
+    private double GetTotal(Item? item)
     {
-        double subtotal1 = _item1.Price * _item1.Quantity;
+        double subtotal1 = item.Price * item.Quantity;
         return subtotal1;
     }
 }
