@@ -32,8 +32,25 @@ public class Invoice
         _items = items;
     }
 
+    public double CalculateTotal2()
+    {
+        double total = 0.0;
+        foreach (var item in _items)
+        {
+            if (item != null)
+            {
+                double subtotal = item.Price * item.Quantity;
+                total += subtotal;
+            }
+        }
+
+        return total;
+    }
+
     public double CalculateTotal()
     {
+        return CalculateTotal2();
+
         double total = 0.0;
 
         if (_item1 != null)
