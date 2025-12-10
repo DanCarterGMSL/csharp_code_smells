@@ -6,10 +6,12 @@ public class MarsRover
     private const string East = "E";
     private const string South = "S";
     private const string West = "W";
-    private const int TurnRight = 'R';
-    private const int TurnLeft = 'L';
-    private const int MoveForward = 'F';
-    private const int MoveBackward = 'B';
+
+    private const int TurnRightInstruction = 'R';
+    private const int TurnLeftInstruction = 'L';
+    private const int MoveForwardInstruction = 'F';
+    private const int MoveBackwardInstruction = 'B';
+
     public string Facing { get; private set; }
     public int[] Coordinates { get; }
 
@@ -29,7 +31,7 @@ public class MarsRover
 
     private void Execute(char instruction)
     {
-        if (instruction == TurnRight)
+        if (instruction == TurnRightInstruction)
         {
             if (Facing == North)
             {
@@ -52,7 +54,7 @@ public class MarsRover
             Facing = North;
         }
 
-        if (instruction == TurnLeft)
+        if (instruction == TurnLeftInstruction)
         {
             if (Facing == North)
             {
@@ -75,7 +77,7 @@ public class MarsRover
             Facing = North;
         }
 
-        if (instruction == MoveForward)
+        if (instruction == MoveForwardInstruction)
         {
             if (Facing == North)
             {
@@ -98,7 +100,7 @@ public class MarsRover
             }
         }
 
-        if (instruction == MoveBackward)
+        if (instruction == MoveBackwardInstruction)
         {
             if (Facing == North)
             {
