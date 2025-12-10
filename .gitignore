@@ -1,4 +1,5 @@
 ﻿.idea/
+.vs
 
 # Build outputs
 **/[Bb]in/*
