@@ -66,7 +66,7 @@ public class Invoice
         return total;
     }
 
-    private double GetTotal(Item? item)
+    private double GetTotal(Item item)
     {
         return item.Price * item.Quantity;
     }
