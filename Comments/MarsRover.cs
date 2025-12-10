@@ -33,21 +33,7 @@ public class MarsRover
     {
         if (instruction == TurnRightInstruction)
         {
-            switch (Facing)
-            {
-                case North:
-                    Facing = East;
-                    break;
-                case East:
-                    Facing = South;
-                    break;
-                case South:
-                    Facing = West;
-                    break;
-                case West:
-                    Facing = North;
-                    break;
-            }
+            TurnRight();
         }
 
         if (instruction == TurnLeftInstruction)
@@ -117,6 +103,25 @@ public class MarsRover
             {
                 IncrementX();
             }
+        }
+    }
+
+    private void TurnRight()
+    {
+        switch (Facing)
+        {
+            case North:
+                Facing = East;
+                break;
+            case East:
+                Facing = South;
+                break;
+            case South:
+                Facing = West;
+                break;
+            case West:
+                Facing = North;
+                break;
         }
     }
 
