@@ -119,22 +119,20 @@ public class MarsRover
 
     private void TurnRight()
     {
-        switch (Facing)
-        {
-            case North:
-                Facing = East;
-                break;
-            case East:
-                Facing = South;
-                break;
-            case South:
-                Facing = West;
-                break;
-            case West:
-                Facing = North;
-                break;
-        }
+        var facingDirection = CreateFacingDirection();
+
+        Facing = facingDirection.TurnRight();
     }
+
+    private IFacingDirection CreateFacingDirection() =>
+        Facing switch
+        {
+            North => new FacingNorth(),
+            East => new FacingEast(),
+            South => new FacingSouth(),
+            West => new FacingWest(),
+            _ => throw new InvalidOperationException()
+        };
 
     private void DecrementX()
     {
@@ -154,5 +152,30 @@ public class MarsRover
     private void IncrementY()
     {
         Coordinates[1] += 1;
+    }
+
+    private interface IFacingDirection
+    {
+        public string TurnRight();
+    }
+
+    private class FacingNorth : IFacingDirection
+    {
+        public string TurnRight() => East;
+    }
+
+    private class FacingEast : IFacingDirection
+    {
+        public string TurnRight() => South;
+    }
+
+    private class FacingSouth : IFacingDirection
+    {
+        public string TurnRight() => West;
+    }
+
+    private class FacingWest : IFacingDirection
+    {
+        public string TurnRight() => North;
     }
 }
