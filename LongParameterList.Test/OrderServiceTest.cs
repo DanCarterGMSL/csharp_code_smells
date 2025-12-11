@@ -6,8 +6,7 @@ public class OrderServiceTests
     [Test]
     public void CreateOrder_ShouldCreateOrderWithCorrectData()
     {
-        string productName = "Laptop";
-        Item item = new Item(2, 1220.50m, productName);
+        Item item = new Item(2, 1220.50m, "Laptop");
         string customerName = "Alice";
         string customerEmail = "alice@example.com";
         string shippingAddress = "123 Main St";
@@ -28,7 +27,7 @@ public class OrderServiceTests
         Assert.That(order, Is.Not.Null);
         Assert.That(order.CustomerName, Is.EqualTo(customerName));
         Assert.That(order.CustomerEmail, Is.EqualTo(customerEmail));
-        Assert.That(order.ProductName, Is.EqualTo(productName));
+        Assert.That(order.ProductName, Is.EqualTo(item.ProductName));
         Assert.That(order.Quantity, Is.EqualTo(item.Quantity));
         Assert.That(order.Price, Is.EqualTo(item.Price));
         Assert.That(order.ShippingAddress, Is.EqualTo(shippingAddress));
