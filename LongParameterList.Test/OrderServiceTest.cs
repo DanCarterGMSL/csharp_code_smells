@@ -16,9 +16,6 @@ public class OrderServiceTests
         Order order = new OrderService().CreateOrder(
             customerName,
             customerEmail,
-            item.ProductName,
-            item.Quantity,
-            item.Price,
             shippingAddress,
             billingAddress,
             orderDate,
@@ -43,9 +40,6 @@ public class OrderServiceTests
         Order order = new OrderService().CreateOrder(
             "",
             "",
-            item.ProductName,
-            item.Quantity,
-            item.Price,
             "",
             "",
             DateTime.Now,

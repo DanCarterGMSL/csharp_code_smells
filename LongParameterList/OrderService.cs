@@ -18,9 +18,6 @@ public class OrderService
 {
     public Order CreateOrder(string customerName,
         string customerEmail,
-        string productName,
-        int quantity,
-        decimal price,
         string shippingAddress,
         string billingAddress,
         DateTime orderDate,
