@@ -5,21 +5,18 @@ using System.Collections.Generic;
 
 public class Item
 {
-    private readonly decimal price;
-    private readonly int quantity;
-
     public Item(string[] data)
     {
         this.data = data;
-        price = decimal.Parse(this.data[1]);
-        quantity = int.Parse(this.data[2]);
+        Price = decimal.Parse(this.data[1]);
+        Quantity = int.Parse(this.data[2]);
     }
 
     public string[] data { get; set; }
 
-    public decimal Price => price;
+    public decimal Price { get; }
 
-    public int Quantity => quantity;
+    public int Quantity { get; }
 }
 
 public static class BasketCalculator
