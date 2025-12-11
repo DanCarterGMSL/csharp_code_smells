@@ -4,13 +4,11 @@ namespace FeatureEnvy.Services;
 
 public class OrderConfirmationService
 {
-    private readonly StockService _stockService;
     private readonly List<WarehouseStock> _stocks;
 
     public OrderConfirmationService(StockService stockService)
     {
-        _stockService = stockService;
-        _stocks = _stockService.Stocks;
+        _stocks = stockService.Stocks;
     }
 
     public bool ConfirmOrder(Order order)
