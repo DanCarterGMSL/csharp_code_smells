@@ -5,14 +5,17 @@ using System.Collections.Generic;
 
 public class Item
 {
+    private readonly decimal price;
+
     public Item(string[] data)
     {
         this.data = data;
+        price = decimal.Parse(this.data[1]);
     }
 
     public string[] data { get; set; }
 
-    public decimal Price => decimal.Parse(data[1]);
+    public decimal Price => price;
 
     public int Quantity => int.Parse(data[2]);
 }
