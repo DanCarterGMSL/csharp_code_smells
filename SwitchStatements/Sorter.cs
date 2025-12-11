@@ -126,7 +126,7 @@ public class Sorter
 {
     private readonly Swapper _swapper = new Swapper();
 
-    public int[] Sort(SortKind kind, int[] input)
+    public int[] Sort(SortKind kind, ISorter sorter, int[] input)
     {
         switch (kind)
         {

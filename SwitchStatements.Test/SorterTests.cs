@@ -7,21 +7,21 @@ public class SorterTests
     [Test]
     public void BubblesortPutsArrayInAscendingOrder() {
         int[] array = {3,1,2};
-        array = new Sorter().Sort(SortKind.Bubble, array);
+        array = new Sorter().Sort(SortKind.Bubble, null, array);
         Assert.That(array, Is.EqualTo(SortedArray));
     }
 	
     [Test]
     public void QuicksortPutsArrayInAscendingOrder() {
         int[] array = {3,1,2};
-        array = new Sorter().Sort(SortKind.Quick, array);
+        array = new Sorter().Sort(SortKind.Quick, null, array);
         Assert.That(array, Is.EqualTo(SortedArray));
     }
 	
     [Test]
     public void InsertionsortPutsArrayInAscendingOrder() {
         int[] array = {3,1,2};
-        array = new Sorter().Sort(SortKind.Insertion, array);
+        array = new Sorter().Sort(SortKind.Insertion, null, array);
         Assert.That(array, Is.EqualTo(SortedArray));
     }
 }
