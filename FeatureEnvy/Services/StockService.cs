@@ -13,6 +13,6 @@ public class StockService
 
     public bool CheckStock(Product product, int qty)
     {
-        return product.IsProductAvailable(qty, _stocks);
+        return product.IsAvailable(qty, _stocks);
     }
 }
