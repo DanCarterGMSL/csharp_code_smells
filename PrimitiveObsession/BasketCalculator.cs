@@ -7,12 +7,9 @@ public class Item
 {
     public Item(string[] data)
     {
-        this.data = data;
-        Price = decimal.Parse(this.data[1]);
-        Quantity = int.Parse(this.data[2]);
+        Price = decimal.Parse(data[1]);
+        Quantity = int.Parse(data[2]);
     }
-
-    public string[] data { get; set; }
 
     public decimal Price { get; }
 
