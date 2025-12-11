@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 public class Item
 {
-    public Item(string[] data)
+    public Item(string[] data, decimal price)
     {
-        Price = decimal.Parse(data[1]);
+        Price = price;
         Quantity = int.Parse(data[2]);
     }
 
