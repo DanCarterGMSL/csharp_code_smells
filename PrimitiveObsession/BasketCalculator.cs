@@ -5,6 +5,11 @@ using System.Collections.Generic;
 
 public class Item
 {
+    public Item(string[] data)
+    {
+        this.data = data;
+    }
+
     public string[] data { get; set; }
 
     public decimal Price => decimal.Parse(data[1]);
