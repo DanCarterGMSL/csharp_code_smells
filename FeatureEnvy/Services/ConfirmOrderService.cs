@@ -13,16 +13,6 @@ public class OrderConfirmationService
 
     public bool ConfirmOrder(Order order)
     {
-        foreach (var item in order.Items)
-        {
-            if (!item.Product.IsAvailable(item.Quantity, _stocks))
-            {
-                order.Confirmed = false;
-                return false;
-            }
-        }
-
-        order.Confirmed = true;
-        return true;
+        return order.Confirm(_stocks);
     }
 }
