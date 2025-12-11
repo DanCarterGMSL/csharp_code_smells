@@ -24,13 +24,10 @@ public class Basket
     }
 
     public List<Item> Items { get; }
-}
 
-public static class BasketCalculator
-{
-    public static decimal CalculateTotal(Basket basket)
+    public decimal CalculateTotal()
     {
-        var items = basket.Items;
+        var items = Items;
         decimal total = 0;
 
         foreach (var item in items)
@@ -43,4 +40,8 @@ public static class BasketCalculator
 
         return total;
     }
+}
+
+public static class BasketCalculator
+{
 }
