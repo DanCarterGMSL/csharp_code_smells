@@ -5,10 +5,10 @@ using System.Collections.Generic;
 
 public class Item
 {
-    public Item(string[] data, decimal price)
+    public Item(decimal price, int quantity)
     {
         Price = price;
-        Quantity = int.Parse(data[2]);
+        Quantity = quantity;
     }
 
     public decimal Price { get; }

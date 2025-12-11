@@ -16,9 +16,9 @@ public class BasketCalculatorTests
         string[] data2 = new[] { "Chocolate", "2.00", "1" };
         var basket = new List<Item>
         {
-            new Item(data: data, price: decimal.Parse(data[1])),       // 1.50
-            new Item(data: data1, price: decimal.Parse(data1[1])),        // 1.60
-            new Item(data: data2, price: decimal.Parse(data2[1])) // 2.00
+            new Item(price: decimal.Parse(data[1]), quantity: int.Parse(data[2])),       // 1.50
+            new Item(price: decimal.Parse(data1[1]), quantity: int.Parse(data1[2])),        // 1.60
+            new Item(price: decimal.Parse(data2[1]), quantity: int.Parse(data2[2])) // 2.00
         };
 
         decimal total = BasketCalculator.CalculateTotal(basket);
@@ -42,7 +42,7 @@ public class BasketCalculatorTests
         string[] data = new[] { "Banana", "1.20", "4" };
         var basket = new List<Item>
         {
-            new Item(data: data, price: decimal.Parse(data[1])) // 4.80
+            new Item(price: decimal.Parse(data[1]), quantity: int.Parse(data[2])) // 4.80
         };
 
         decimal total = BasketCalculator.CalculateTotal(basket);
