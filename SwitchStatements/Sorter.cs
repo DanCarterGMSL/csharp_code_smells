@@ -2,7 +2,7 @@
 
 public class Swapper
 {
-    public void Swap(int[] input, int index1, int index2)
+    public static void Swap(int[] input, int index1, int index2)
     {
         int first = input[index1];
         int second = input[index2];
@@ -35,7 +35,7 @@ public class BubbleSorter : ISorter
             {
                 if (input[i] > input[i + 1])
                 {
-                    this.Swapper.Swap(input, i, i + 1);
+                    Swapper.Swap(input, i, i + 1);
                     sorted = false;
                 }
             }
@@ -65,7 +65,7 @@ public class QuickSorter : ISorter
                 j--;
             if (k <= j)
             {
-                swapper.Swap(input, k, j);
+                Swapper.Swap(input, k, j);
                 k++;
                 j--;
             }
@@ -108,7 +108,7 @@ public class InsertionSorter : ISorter
             {
                 if (input[j] < input[j - 1])
                 {
-                    swapper.Swap(input, j, j - 1);
+                    Swapper.Swap(input, j, j - 1);
                 }
             }
         }
