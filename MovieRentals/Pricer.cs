@@ -12,6 +12,9 @@ namespace MovieRentals
 
             double rating = Double.Parse(imdbMovie.imdbRating);
 
+            if (rating >= 8.0)
+                price += 1.0;
+
             if (rating > 7.0)
                 price += 1.0;
 
