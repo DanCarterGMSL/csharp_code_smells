@@ -6,6 +6,23 @@ namespace MovieRentals
     {
         public static Movie Price(string imdbId)
         {
+            var imdbMovie = FetchImdbMovie(imdbId);
+
+            double price = 3.95;
+
+            double rating = Double.Parse(imdbMovie.imdbRating);
+
+            if (rating > 7.0)
+                price += 1.0;
+
+            if (rating < 4)
+                price -= 1.0;
+
+            return new Movie(imdbMovie.Title, price);
+        }
+
+        private static ImdbMovie FetchImdbMovie(string imdbId)
+        {
             async Task<ImdbMovie> Json()
             {
                 HttpResponseMessage response =
@@ -20,18 +37,7 @@ namespace MovieRentals
 
 
             ImdbMovie imdbMovie = Json().Result;
-
-            double price = 3.95;
-
-            double rating = Double.Parse(imdbMovie.imdbRating);
-
-            if (rating > 7.0)
-                price += 1.0;
-
-            if (rating < 4)
-                price -= 1.0;
-
-            return new Movie(imdbMovie.Title, price);
+            return imdbMovie;
         }
     }
 }
