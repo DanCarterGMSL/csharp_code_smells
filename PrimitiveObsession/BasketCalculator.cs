@@ -6,6 +6,11 @@ using System.Collections.Generic;
 public class Item
 {
     public string[] data { get; set; }
+
+    public decimal Price()
+    {
+        return decimal.Parse(data[1]);
+    }
 }
 
 public static class BasketCalculator
@@ -16,17 +21,12 @@ public static class BasketCalculator
 
         foreach (var item in basket)
         {
-            decimal price = Price(item);
+            decimal price = item.Price();
             int quantity = int.Parse(item.data[2]);
 
             total += price * quantity;
         }
 
         return total;
-    }
-
-    private static decimal Price(Item item)
-    {
-        return decimal.Parse(item.data[1]);
     }
 }
