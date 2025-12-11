@@ -53,50 +53,8 @@ public class QuickSorter
     }
 
     public Swapper Swapper { get; }
-}
 
-public class Sorter
-{
-    private readonly Swapper _swapper = new Swapper();
-
-    public int[] Sort(SortKind kind, int[] input)
-    {
-        switch (kind)
-        {
-            case SortKind.Bubble:
-                new BubbleSorter(_swapper).BubbleSort(input);
-                break;
-            case SortKind.Quick:
-                QuickSort(input, new QuickSorter(_swapper));
-                break;
-            case SortKind.Insertion:
-                InsertionSort(input);
-                break;
-        }
-        return input;
-    }
-
-    private void QuickSort(int[] input, QuickSorter quickSorter)
-    {
-        var swapper = quickSorter.Swapper;
-        QuicksortRecurse(input, 0, input.Length - 1, swapper);
-    }
-
-    private void InsertionSort(int[] input)
-    {
-        for (int i = 0; i < input.Length - 1; i++)
-        {
-            for (int j = i + 1; j > 0; j--)
-            {
-                if (input[j] < input[j - 1])
-                {
-                    _swapper.Swap(input, j, j - 1);
-                }
-            }
-        }
-    }
-
-    private void QuicksortRecurse(int[] input, int left, int right, Swapper swapper)
+    private static void QuicksortRecurse(int[] input, int left, int right, Swapper swapper)
     {
         int i = left, j = right;
         int pivot = input[(left + right) / 2];
@@ -124,6 +82,48 @@ public class Sorter
         if (index < right)
         {
             QuicksortRecurse(input, index, right, swapper);
+        }
+    }
+
+    public void QuickSort(int[] input)
+    {
+        var swapper = this.Swapper;
+        QuickSorter.QuicksortRecurse(input, 0, input.Length - 1, swapper);
+    }
+}
+
+public class Sorter
+{
+    private readonly Swapper _swapper = new Swapper();
+
+    public int[] Sort(SortKind kind, int[] input)
+    {
+        switch (kind)
+        {
+            case SortKind.Bubble:
+                new BubbleSorter(_swapper).BubbleSort(input);
+                break;
+            case SortKind.Quick:
+                new QuickSorter(_swapper).QuickSort(input);
+                break;
+            case SortKind.Insertion:
+                InsertionSort(input);
+                break;
+        }
+        return input;
+    }
+
+    private void InsertionSort(int[] input)
+    {
+        for (int i = 0; i < input.Length - 1; i++)
+        {
+            for (int j = i + 1; j > 0; j--)
+            {
+                if (input[j] < input[j - 1])
+                {
+                    _swapper.Swap(input, j, j - 1);
+                }
+            }
         }
     }
 }
