@@ -3,6 +3,11 @@
 using System;
 using System.Collections.Generic;
 
+public class Item
+{
+    public string[] data { get; set; }
+}
+
 public static class BasketCalculator
 {
     public static decimal CalculateTotal(List<string[]> basket)
