@@ -17,7 +17,7 @@ public class Sorter
                 BubbleSort(input);
                 break;
             case SortKind.Quick:
-                input = Quicksort(input, 0, input.Length - 1);
+                Quicksort(input, 0, input.Length - 1);
                 break;
             case SortKind.Insertion:
                 InsertionSort(input);
