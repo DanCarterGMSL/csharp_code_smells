@@ -1,6 +1,6 @@
 ﻿namespace MovieRentals
 {
-    internal class Movie
+    public class Movie
     {
         public Movie(string title, double price)
         {

@@ -1,6 +1,6 @@
 ﻿namespace MovieRentals
 {
-    internal class ImdbMovie
+    public class ImdbMovie
     {
         public string Title {
             get;

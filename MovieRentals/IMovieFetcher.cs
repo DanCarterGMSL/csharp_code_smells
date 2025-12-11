@@ -1,6 +1,6 @@
 ﻿namespace MovieRentals;
 
-internal interface IMovieFetcher
+public interface IMovieFetcher
 {
     ImdbMovie FetchImdbMovie(string imdbId);
 }

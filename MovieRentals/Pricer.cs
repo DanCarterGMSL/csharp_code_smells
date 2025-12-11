@@ -2,7 +2,7 @@
 
 namespace MovieRentals
 {
-    internal class Pricer
+    public class Pricer
     {
         public static Movie Price(string imdbId, IMovieFetcher imdbMovieFetcher)
         {

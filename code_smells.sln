@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36717.8 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LongMethod", "LongMethod\LongMethod.csproj", "{D18AE085-C6AA-4CD1-B4BD-AAB5095D43E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LongMethod.Test", "LongMethod.Test\LongMethod.Test.csproj", "{C65FE55D-F19E-49B6-B7BB-406895CDD78E}"
@@ -65,6 +68,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{2BCA39FA-2B4F-486F-BB7A-01C46EB05AC8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Test", "Demo.Test\Demo.Test.csproj", "{4ED24F5E-8284-48EA-BDDE-7DE21CAABEDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRentals.Test", "MovieRentals.Test\MovieRentals.Test.csproj", "{0856065D-EFC4-45B1-89C5-C41098E1EA2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -184,6 +189,13 @@ Global
 		{4ED24F5E-8284-48EA-BDDE-7DE21CAABEDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ED24F5E-8284-48EA-BDDE-7DE21CAABEDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4ED24F5E-8284-48EA-BDDE-7DE21CAABEDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0856065D-EFC4-45B1-89C5-C41098E1EA2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0856065D-EFC4-45B1-89C5-C41098E1EA2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0856065D-EFC4-45B1-89C5-C41098E1EA2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0856065D-EFC4-45B1-89C5-C41098E1EA2E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0278823D-D392-4547-8C33-CD2127DF42B2} = {AE7F735B-0CB4-45C6-B17B-F4FC645824B4}
@@ -197,5 +209,6 @@ Global
 		{BAF383A7-142E-44A1-8AC5-CD2AA5EBB3DC} = {BD98D267-29EE-4104-B820-5AFC168AFE6F}
 		{FE39E219-500E-41DA-BCDE-CCDD4348E6C1} = {0168F6F6-1E29-40A0-BB7A-E710A002FB62}
 		{392B5D62-917D-41B2-8345-E1DEAAAA7316} = {0168F6F6-1E29-40A0-BB7A-E710A002FB62}
+		{0856065D-EFC4-45B1-89C5-C41098E1EA2E} = {0168F6F6-1E29-40A0-BB7A-E710A002FB62}
 	EndGlobalSection
 EndGlobal
