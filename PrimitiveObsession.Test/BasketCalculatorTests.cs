@@ -18,7 +18,7 @@ public class BasketCalculatorTests
             new Item(price: 2.00m, quantity: 1) // 2.00
         };
 
-        decimal total = BasketCalculator.CalculateTotal(basket);
+        decimal total = BasketCalculator.CalculateTotal(new Basket(basket));
 
         Assert.That(total, Is.EqualTo(5.10m));
     }
@@ -28,7 +28,7 @@ public class BasketCalculatorTests
     {
         var basket = new List<Item>();
 
-        decimal total = BasketCalculator.CalculateTotal(basket);
+        decimal total = BasketCalculator.CalculateTotal(new Basket(basket));
 
         Assert.That(total, Is.EqualTo(0m));
     }
@@ -41,7 +41,7 @@ public class BasketCalculatorTests
             new Item(price: 1.20m, quantity: 4) // 4.80
         };
 
-        decimal total = BasketCalculator.CalculateTotal(basket);
+        decimal total = BasketCalculator.CalculateTotal(new Basket(basket));
 
         Assert.That(total, Is.EqualTo(4.80m));
     }

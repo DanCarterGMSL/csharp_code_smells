@@ -16,10 +16,21 @@ public class Item
     public int Quantity { get; }
 }
 
+public class Basket
+{
+    public Basket(List<Item> items)
+    {
+        Items = items;
+    }
+
+    public List<Item> Items { get; }
+}
+
 public static class BasketCalculator
 {
-    public static decimal CalculateTotal(List<Item> items)
+    public static decimal CalculateTotal(Basket basket)
     {
+        var items = basket.Items;
         decimal total = 0;
 
         foreach (var item in items)
