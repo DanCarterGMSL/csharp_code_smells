@@ -17,7 +17,7 @@ public class OrderServiceTests
         Order order = new OrderService().CreateOrder(
             customerName,
             customerEmail,
-            productName,
+            item.ProductName,
             item.Quantity,
             item.Price,
             shippingAddress,
@@ -44,7 +44,7 @@ public class OrderServiceTests
         Order order = new OrderService().CreateOrder(
             "",
             "",
-            "",
+            item.ProductName,
             item.Quantity,
             item.Price,
             "",
@@ -60,10 +60,12 @@ public class Item
 {
     public int Quantity { get; }
     public decimal Price { get; }
+    public string ProductName { get; }
 
     public Item(int quantity, decimal price, string productName)
     {
         Quantity = quantity;
         Price = price;
+        ProductName = productName;
     }
 }
