@@ -51,7 +51,7 @@ public class OrderHistoryServiceTests
             }
         };
 
-        _service = new OrderHistoryService(_orders);
+        _service = new OrderHistoryService(new OrderCollection(_orders));
     }
 
     [Test]
