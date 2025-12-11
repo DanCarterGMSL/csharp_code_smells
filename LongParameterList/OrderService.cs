@@ -14,15 +14,30 @@ public class Order
     public decimal TotalAmount => Quantity * Price;
 }
 
+public class Customer
+{
+    public Customer(string customerName, string customerEmail, string billingAddress)
+    {
+        CustomerName = customerName;
+        CustomerEmail = customerEmail;
+        BillingAddress = billingAddress;
+    }
+
+    public string CustomerName { get; }
+    public string CustomerEmail { get; }
+    public string BillingAddress { get; }
+}
+
 public class OrderService
 {
-    public Order CreateOrder(string customerName,
-        string customerEmail,
+    public Order CreateOrder(Customer customer,
         string shippingAddress,
-        string billingAddress,
         DateTime orderDate,
         Item item)
     {
+        var customerName = customer.CustomerName;
+        var customerEmail = customer.CustomerEmail;
+        var billingAddress = customer.BillingAddress;
         var order = new Order
         {
             CustomerName = customerName,
