@@ -65,7 +65,7 @@ public class Sorter
         input[index2] = first;
     }
 
-    private int[] Quicksort(int[] input, int left, int right)
+    private void Quicksort(int[] input, int left, int right)
     {
         int i = left, j = right;
         int pivot = input[(left + right) / 2];
@@ -94,6 +94,5 @@ public class Sorter
         {
             Quicksort(input, index, right);
         }
-        return input;
     }
 }
