@@ -6,10 +6,10 @@ public class OrderServiceTests
     [Test]
     public void CreateOrder_ShouldCreateOrderWithCorrectData()
     {
-        Item item = new Item(2, 1220.50m);
+        string productName = "Laptop";
+        Item item = new Item(2, 1220.50m, productName);
         string customerName = "Alice";
         string customerEmail = "alice@example.com";
-        string productName = "Laptop";
         string shippingAddress = "123 Main St";
         string billingAddress = "123 Main St";
         DateTime orderDate = new DateTime(2025, 12, 7);
@@ -39,7 +39,7 @@ public class OrderServiceTests
     [Test]
     public void CreateOrder_ShouldCalculateTotalAmountCorrectly()
     {
-        Item item = new Item(3, 150.75m);
+        Item item = new Item(3, 150.75m, "");
 
         Order order = new OrderService().CreateOrder(
             "",
@@ -61,7 +61,7 @@ public class Item
     public int Quantity { get; }
     public decimal Price { get; }
 
-    public Item(int quantity, decimal price)
+    public Item(int quantity, decimal price, string productName)
     {
         Quantity = quantity;
         Price = price;
