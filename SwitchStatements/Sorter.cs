@@ -18,7 +18,12 @@ public class Swapper
     }
 }
 
-public class BubbleSorter
+public interface ISorter
+{
+    void Sort(int[] input);
+}
+
+public class BubbleSorter : ISorter
 {
     public BubbleSorter(Swapper swapper)
     {
