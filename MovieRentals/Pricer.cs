@@ -4,9 +4,9 @@ namespace MovieRentals
 {
     internal class Pricer
     {
-        public static Movie Price(string imdbId)
+        public static Movie Price(string imdbId, ImdbMovieFetcher imdbMovieFetcher)
         {
-            var imdbMovie = new ImdbMovieFetcher().FetchImdbMovie(imdbId);
+            var imdbMovie = imdbMovieFetcher.FetchImdbMovie(imdbId);
 
             double price = 3.95;
 

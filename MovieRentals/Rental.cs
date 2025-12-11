@@ -8,7 +8,7 @@
         {
             ImdbID = imdbId;
             Member = member;
-            _movie = Pricer.Price(imdbId);
+            _movie = Pricer.Price(imdbId, new ImdbMovieFetcher());
         }
 
         public string ImdbID { get; }
