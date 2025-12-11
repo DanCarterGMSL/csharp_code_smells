@@ -131,13 +131,16 @@ public class Sorter
         switch (kind)
         {
             case SortKind.Bubble:
-                new BubbleSorter(_swapper).Sort(input);
+                var bubbleSorter = new BubbleSorter(_swapper);
+                bubbleSorter.Sort(input);
                 break;
             case SortKind.Quick:
-                new QuickSorter(_swapper).Sort(input);
+                var quickSorter = new QuickSorter(_swapper);
+                quickSorter.Sort(input);
                 break;
             case SortKind.Insertion:
-                new InsertionSorter(_swapper).Sort(input);
+                var insertionSorter = new InsertionSorter(_swapper);
+                insertionSorter.Sort(input);
                 break;
         }
         return input;
