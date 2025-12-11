@@ -6,9 +6,9 @@ namespace MessageChains
         private readonly IList<InvoiceItem> _invoiceItems = new List<InvoiceItem>();
         private readonly Country _country;
 
-        public Invoice(Customer customer)
+        public Invoice(Country country)
         {
-            _country = customer.Address.Country;
+            _country = country;
         }
 
         public void AddItem(InvoiceItem invoiceItem)
