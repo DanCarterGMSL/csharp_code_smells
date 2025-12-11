@@ -4,7 +4,7 @@ public class Basket
 {
     public List<Item> Items { get; } = new();
 
-    public void AddToBasket2(Product product, int qty)
+    public void Add(Product product, int qty)
     {
         var existing = Items.FirstOrDefault(i => i.Product == product);
 

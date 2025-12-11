@@ -6,6 +6,6 @@ public class BasketService
 {
     public void AddToBasket(Basket basket, Product product, int qty)
     {
-        basket.AddToBasket2(product, qty);
+        basket.Add(product, qty);
     }
 }
