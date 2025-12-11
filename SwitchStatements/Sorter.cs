@@ -17,13 +17,18 @@ public class Sorter
                 BubbleSort(input);
                 break;
             case SortKind.Quick:
-                QuicksortRecurse(input, 0, input.Length - 1);
+                QuickSort(input);
                 break;
             case SortKind.Insertion:
                 InsertionSort(input);
                 break;
         }
         return input;
+    }
+
+    private void QuickSort(int[] input)
+    {
+        QuicksortRecurse(input, 0, input.Length - 1);
     }
 
     private void BubbleSort(int[] input)
