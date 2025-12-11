@@ -128,21 +128,7 @@ public class Sorter
 
     public int[] Sort(SortKind kind, ISorter sorter, int[] input)
     {
-        switch (kind)
-        {
-            case SortKind.Bubble:
-                var bubbleSorter = new BubbleSorter(_swapper);
-                bubbleSorter.Sort(input);
-                break;
-            case SortKind.Quick:
-                var quickSorter = new QuickSorter(_swapper);
-                quickSorter.Sort(input);
-                break;
-            case SortKind.Insertion:
-                var insertionSorter = new InsertionSorter(_swapper);
-                insertionSorter.Sort(input);
-                break;
-        }
+        sorter.Sort(input);
         return input;
     }
 }
