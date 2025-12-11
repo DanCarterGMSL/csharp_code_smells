@@ -41,3 +41,17 @@ public class OrderService
         return order;
     }
 }
+
+public class Item
+{
+    public int Quantity { get; }
+    public decimal Price { get; }
+    public string ProductName { get; }
+
+    public Item(int quantity, decimal price, string productName)
+    {
+        Quantity = quantity;
+        Price = price;
+        ProductName = productName;
+    }
+}

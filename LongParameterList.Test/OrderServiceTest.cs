@@ -54,17 +54,3 @@ public class OrderServiceTests
         Assert.That(order.TotalAmount, Is.EqualTo(452.25));
     }
 }
-
-public class Item
-{
-    public int Quantity { get; }
-    public decimal Price { get; }
-    public string ProductName { get; }
-
-    public Item(int quantity, decimal price, string productName)
-    {
-        Quantity = quantity;
-        Price = price;
-        ProductName = productName;
-    }
-}
