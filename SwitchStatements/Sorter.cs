@@ -27,7 +27,7 @@ public class BubbleSorter
 
     public Swapper Swapper { get; }
 
-    public void BubbleSort(int[] input)
+    public void Sort(int[] input)
     {
         bool sorted = false;
         while (!sorted)
@@ -85,7 +85,7 @@ public class QuickSorter
         }
     }
 
-    public void QuickSort(int[] input)
+    public void Sort(int[] input)
     {
         var swapper = this.Swapper;
         QuickSorter.QuicksortRecurse(input, 0, input.Length - 1, swapper);
@@ -101,7 +101,7 @@ public class InsertionSorter
 
     public Swapper Swapper { get; }
 
-    public void InsertionSort(int[] input)
+    public void Sort(int[] input)
     {
         var swapper = this.Swapper;
         for (int i = 0; i < input.Length - 1; i++)
@@ -126,13 +126,13 @@ public class Sorter
         switch (kind)
         {
             case SortKind.Bubble:
-                new BubbleSorter(_swapper).BubbleSort(input);
+                new BubbleSorter(_swapper).Sort(input);
                 break;
             case SortKind.Quick:
-                new QuickSorter(_swapper).QuickSort(input);
+                new QuickSorter(_swapper).Sort(input);
                 break;
             case SortKind.Insertion:
-                new InsertionSorter(_swapper).InsertionSort(input);
+                new InsertionSorter(_swapper).Sort(input);
                 break;
         }
         return input;
