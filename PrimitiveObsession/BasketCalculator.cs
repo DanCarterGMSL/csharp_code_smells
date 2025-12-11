@@ -27,10 +27,9 @@ public class Basket
 
     public decimal CalculateTotal()
     {
-        var items = Items;
         decimal total = 0;
 
-        foreach (var item in items)
+        foreach (var item in Items)
         {
             decimal price = item.Price;
             int quantity = item.Quantity;
