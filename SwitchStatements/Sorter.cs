@@ -126,7 +126,7 @@ public class Sorter
 {
     private readonly Swapper _swapper = new Swapper();
 
-    public int[] Sort(SortKind kind, ISorter sorter, int[] input)
+    public int[] Sort(ISorter sorter, int[] input)
     {
         sorter.Sort(input);
         return input;
