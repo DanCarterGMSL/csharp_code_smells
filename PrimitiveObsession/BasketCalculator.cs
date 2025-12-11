@@ -18,11 +18,11 @@ public class Item
 
 public static class BasketCalculator
 {
-    public static decimal CalculateTotal(List<Item> basket)
+    public static decimal CalculateTotal(List<Item> items)
     {
         decimal total = 0;
 
-        foreach (var item in basket)
+        foreach (var item in items)
         {
             decimal price = item.Price;
             int quantity = item.Quantity;
