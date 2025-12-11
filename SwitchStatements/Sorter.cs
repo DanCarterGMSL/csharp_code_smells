@@ -17,7 +17,7 @@ public class Sorter
                 BubbleSort(input);
                 break;
             case SortKind.Quick:
-                Quicksort(input, 0, input.Length - 1);
+                QuicksortRecurse(input, 0, input.Length - 1);
                 break;
             case SortKind.Insertion:
                 InsertionSort(input);
@@ -65,7 +65,7 @@ public class Sorter
         input[index2] = first;
     }
 
-    private void Quicksort(int[] input, int left, int right)
+    private void QuicksortRecurse(int[] input, int left, int right)
     {
         int i = left, j = right;
         int pivot = input[(left + right) / 2];
@@ -88,11 +88,11 @@ public class Sorter
         int index = i;
         if (left < index - 1)
         {
-            Quicksort(input, left, index - 1);
+            QuicksortRecurse(input, left, index - 1);
         }
         if (index < right)
         {
-            Quicksort(input, index, right);
+            QuicksortRecurse(input, index, right);
         }
     }
 }
