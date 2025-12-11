@@ -14,37 +14,47 @@ public class Sorter
         switch (kind)
         {
             case SortKind.Bubble:
-                bool sorted = false;
-                while (!sorted)
-                {
-                    sorted = true;
-                    for (int i = 0; i < input.Length - 1; i++)
-                    {
-                        if (input[i] > input[i + 1])
-                        {
-                            Swap(input, i, i + 1);
-                            sorted = false;
-                        }
-                    }
-                }
+                BubbleSort(input);
                 break;
             case SortKind.Quick:
                 input = Quicksort(input, 0, input.Length - 1);
                 break;
             case SortKind.Insertion:
-                for (int i = 0; i < input.Length - 1; i++)
-                {
-                    for (int j = i + 1; j > 0; j--)
-                    {
-                        if (input[j] < input[j - 1])
-                        {
-                            Swap(input, j, j - 1);
-                        }
-                    }
-                }
+                InsertionSort(input);
                 break;
         }
         return input;
+    }
+
+    private void BubbleSort(int[] input)
+    {
+        bool sorted = false;
+        while (!sorted)
+        {
+            sorted = true;
+            for (int i = 0; i < input.Length - 1; i++)
+            {
+                if (input[i] > input[i + 1])
+                {
+                    Swap(input, i, i + 1);
+                    sorted = false;
+                }
+            }
+        }
+    }
+
+    private void InsertionSort(int[] input)
+    {
+        for (int i = 0; i < input.Length - 1; i++)
+        {
+            for (int j = i + 1; j > 0; j--)
+            {
+                if (input[j] < input[j - 1])
+                {
+                    Swap(input, j, j - 1);
+                }
+            }
+        }
     }
 
     private void Swap(int[] input, int index1, int index2)
