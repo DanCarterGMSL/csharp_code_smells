@@ -11,12 +11,11 @@ public class BasketCalculatorTests
     [Test]
     public void CalculateTotal_WithMultipleItems_ReturnsCorrectTotal()
     {
-        string[] data1 = new[] { "Pear", "0.80", "2" };
         string[] data2 = new[] { "Chocolate", "2.00", "1" };
         var basket = new List<Item>
         {
             new Item(price: 0.50m, quantity: 3),       // 1.50
-            new Item(price: decimal.Parse(data1[1]), quantity: int.Parse(data1[2])),        // 1.60
+            new Item(price: 0.80m, quantity: 2),        // 1.60
             new Item(price: decimal.Parse(data2[1]), quantity: int.Parse(data2[2])) // 2.00
         };
 
