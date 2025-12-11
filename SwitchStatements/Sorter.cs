@@ -56,7 +56,6 @@ public class Sorter
 
     private void BubbleSort(int[] input, BubbleSorter bubbleSorter)
     {
-        var swapper = bubbleSorter.Swapper;
         bool sorted = false;
         while (!sorted)
         {
@@ -65,7 +64,7 @@ public class Sorter
             {
                 if (input[i] > input[i + 1])
                 {
-                    swapper.Swap(input, i, i + 1);
+                    bubbleSorter.Swapper.Swap(input, i, i + 1);
                     sorted = false;
                 }
             }
