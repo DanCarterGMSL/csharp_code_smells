@@ -6,9 +6,9 @@ public class OrderConfirmationService
 {
     private readonly List<WarehouseStock> _stocks;
 
-    public OrderConfirmationService(StockService stockService)
+    public OrderConfirmationService(List<WarehouseStock> stocks)
     {
-        _stocks = stockService.Stocks;
+        _stocks = stocks;
     }
 
     public bool ConfirmOrder(Order order)

@@ -25,7 +25,7 @@ public class OrderConfirmationServiceTests
         };
 
         _stockService = new StockService(_stocks);
-        _service = new OrderConfirmationService(_stockService);
+        _service = new OrderConfirmationService(_stockService.Stocks);
 
         _order = new Order();
     }
