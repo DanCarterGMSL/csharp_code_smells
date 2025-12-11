@@ -124,8 +124,6 @@ public class InsertionSorter : ISorter
 
 public class Sorter
 {
-    private readonly Swapper _swapper = new Swapper();
-
     public int[] Sort(ISorter sorter, int[] input)
     {
         sorter.Sort(input);
