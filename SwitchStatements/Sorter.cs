@@ -107,13 +107,13 @@ public class Sorter
                 new QuickSorter(_swapper).QuickSort(input);
                 break;
             case SortKind.Insertion:
-                InsertionSort(input);
+                InsertionSort(input, _swapper);
                 break;
         }
         return input;
     }
 
-    private void InsertionSort(int[] input)
+    private void InsertionSort(int[] input, Swapper swapper)
     {
         for (int i = 0; i < input.Length - 1; i++)
         {
@@ -121,7 +121,7 @@ public class Sorter
             {
                 if (input[j] < input[j - 1])
                 {
-                    _swapper.Swap(input, j, j - 1);
+                    swapper.Swap(input, j, j - 1);
                 }
             }
         }
