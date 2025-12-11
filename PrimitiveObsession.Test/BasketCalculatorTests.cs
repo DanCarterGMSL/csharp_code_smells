@@ -39,10 +39,9 @@ public class BasketCalculatorTests
     [Test]
     public void CalculateTotal_WithSingleItem_ReturnsPriceTimesQuantity()
     {
-        string[] data = new[] { "Banana", "1.20", "4" };
         var basket = new List<Item>
         {
-            new Item(price: decimal.Parse(data[1]), quantity: int.Parse(data[2])) // 4.80
+            new Item(price: decimal.Parse("1.20"), quantity: int.Parse("4")) // 4.80
         };
 
         decimal total = BasketCalculator.CalculateTotal(basket);
