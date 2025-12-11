@@ -50,7 +50,7 @@ public class BubbleSorter : ISorter
     }
 }
 
-public class QuickSorter
+public class QuickSorter : ISorter
 {
     public QuickSorter(Swapper swapper)
     {
@@ -97,7 +97,7 @@ public class QuickSorter
     }
 }
 
-public class InsertionSorter
+public class InsertionSorter : ISorter
 {
     public InsertionSorter(Swapper swapper)
     {
