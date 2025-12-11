@@ -13,12 +13,6 @@ public class StockService
 
     public bool CheckStock(Product product, int qty)
     {
-        return IsProductAvailable(product, qty);
-    }
-
-    private bool IsProductAvailable(Product product, int qty)
-    {
-        var stock = _stocks.FirstOrDefault(s => s.Product == product);
-        return stock != null && stock.Quantity >= qty;
+        return product.IsProductAvailable(qty, _stocks);
     }
 }
