@@ -30,9 +30,9 @@ public class OrderService
         {
             CustomerName = customerName,
             CustomerEmail = customerEmail,
-            ProductName = productName,
-            Quantity = quantity,
-            Price = price,
+            ProductName = item.ProductName,
+            Quantity = item.Quantity,
+            Price = item.Price,
             ShippingAddress = shippingAddress,
             BillingAddress = billingAddress,
             OrderDate = orderDate
