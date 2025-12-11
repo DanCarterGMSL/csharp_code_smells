@@ -6,7 +6,7 @@ namespace MovieRentals
     {
         public static Movie Price(string imdbId)
         {
-            var imdbMovie = FetchImdbMovie(imdbId);
+            var imdbMovie = ImdbMovieFetcher.FetchImdbMovie(imdbId);
 
             double price = 3.95;
 
@@ -19,25 +19,6 @@ namespace MovieRentals
                 price -= 1.0;
 
             return new Movie(imdbMovie.Title, price);
-        }
-
-        private static ImdbMovie FetchImdbMovie(string imdbId)
-        {
-            async Task<ImdbMovie> Json()
-            {
-                HttpResponseMessage response =
-                    await new HttpClient().GetAsync("http://www.omdbapi.com/?i=" + imdbId + "&apikey=6487ec62");
-
-                response.EnsureSuccessStatusCode();
-
-                string json = await response.Content.ReadAsStringAsync();
-
-                return JsonSerializer.Deserialize<ImdbMovie>(json);
-            }
-
-
-            ImdbMovie imdbMovie = Json().Result;
-            return imdbMovie;
         }
     }
 }
