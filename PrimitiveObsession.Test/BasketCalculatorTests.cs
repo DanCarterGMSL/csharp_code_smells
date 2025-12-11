@@ -41,7 +41,7 @@ public class BasketCalculatorTests
     {
         var basket = new List<Item>
         {
-            new Item(price: decimal.Parse("1.20"), quantity: int.Parse("4")) // 4.80
+            new Item(price: 1.20m, quantity: 4) // 4.80
         };
 
         decimal total = BasketCalculator.CalculateTotal(basket);
