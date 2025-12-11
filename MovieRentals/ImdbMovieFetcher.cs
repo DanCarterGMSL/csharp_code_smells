@@ -2,7 +2,7 @@
 
 using System.Text.Json;
 
-internal class ImdbMovieFetcher
+internal class ImdbMovieFetcher : IMovieFetcher
 {
     public ImdbMovie FetchImdbMovie(string imdbId)
     {
