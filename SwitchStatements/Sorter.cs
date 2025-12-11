@@ -57,7 +57,7 @@ public class Sorter
                 new BubbleSorter(_swapper).BubbleSort(input);
                 break;
             case SortKind.Quick:
-                QuickSort(input);
+                QuickSort(input, _swapper);
                 break;
             case SortKind.Insertion:
                 InsertionSort(input);
@@ -66,9 +66,9 @@ public class Sorter
         return input;
     }
 
-    private void QuickSort(int[] input)
+    private void QuickSort(int[] input, Swapper swapper)
     {
-        QuicksortRecurse(input, 0, input.Length - 1);
+        QuicksortRecurse(input, 0, input.Length - 1, swapper);
     }
 
     private void InsertionSort(int[] input)
@@ -85,7 +85,7 @@ public class Sorter
         }
     }
 
-    private void QuicksortRecurse(int[] input, int left, int right)
+    private void QuicksortRecurse(int[] input, int left, int right, Swapper swapper)
     {
         int i = left, j = right;
         int pivot = input[(left + right) / 2];
@@ -98,7 +98,7 @@ public class Sorter
                 j--;
             if (k <= j)
             {
-                _swapper.Swap(input, k, j);
+                swapper.Swap(input, k, j);
                 k++;
                 j--;
             }
@@ -108,11 +108,11 @@ public class Sorter
         int index = i;
         if (left < index - 1)
         {
-            QuicksortRecurse(input, left, index - 1);
+            QuicksortRecurse(input, left, index - 1, swapper);
         }
         if (index < right)
         {
-            QuicksortRecurse(input, index, right);
+            QuicksortRecurse(input, index, right, swapper);
         }
     }
 }
