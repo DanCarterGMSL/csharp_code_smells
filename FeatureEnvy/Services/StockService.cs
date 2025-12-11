@@ -11,8 +11,10 @@ public class StockService
         _stocks = stocks;
     }
 
+    public List<WarehouseStock> Stocks => _stocks;
+
     public bool CheckStock(Product product, int qty)
     {
-        return product.IsAvailable(qty, _stocks);
+        return product.IsAvailable(qty, Stocks);
     }
 }
