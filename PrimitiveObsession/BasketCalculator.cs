@@ -41,7 +41,3 @@ public class Basket
         return total;
     }
 }
-
-public static class BasketCalculator
-{
-}
