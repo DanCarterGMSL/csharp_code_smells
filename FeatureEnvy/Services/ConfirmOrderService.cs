@@ -15,7 +15,7 @@ public class OrderConfirmationService
     {
         foreach (var item in order.Items)
         {
-            if (!_stockService.CheckStock(item.Product, item.Quantity))
+            if (!item.Product.IsAvailable(item.Quantity, _stockService.Stocks))
             {
                 order.Confirmed = false;
                 return false;
