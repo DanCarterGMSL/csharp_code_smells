@@ -6,7 +6,7 @@ namespace MovieRentals
     {
         public static Movie Price(string imdbId)
         {
-            var imdbMovie = ImdbMovieFetcher.FetchImdbMovie(imdbId);
+            var imdbMovie = new ImdbMovieFetcher().FetchImdbMovie(imdbId);
 
             double price = 3.95;
 

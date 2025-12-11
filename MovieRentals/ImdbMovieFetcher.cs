@@ -4,7 +4,7 @@ using System.Text.Json;
 
 internal class ImdbMovieFetcher
 {
-    public static ImdbMovie FetchImdbMovie(string imdbId)
+    public ImdbMovie FetchImdbMovie(string imdbId)
     {
         async Task<ImdbMovie> Json()
         {
