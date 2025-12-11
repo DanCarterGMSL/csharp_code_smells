@@ -16,15 +16,15 @@ public class Order
 
 public class OrderService
 {
-    public Order CreateOrder(
-        string customerName,
+    public Order CreateOrder(string customerName,
         string customerEmail,
         string productName,
         int quantity,
         decimal price,
         string shippingAddress,
         string billingAddress,
-        DateTime orderDate)
+        DateTime orderDate,
+        Item item)
     {
         var order = new Order
         {

@@ -21,8 +21,8 @@ public class OrderServiceTests
             item.Price,
             shippingAddress,
             billingAddress,
-            orderDate
-        );
+            orderDate,
+            item);
 
         Assert.That(order, Is.Not.Null);
         Assert.That(order.CustomerName, Is.EqualTo(customerName));
@@ -48,8 +48,8 @@ public class OrderServiceTests
             item.Price,
             "",
             "",
-            DateTime.Now
-        );
+            DateTime.Now,
+            item);
 
         Assert.That(order.TotalAmount, Is.EqualTo(452.25));
     }
