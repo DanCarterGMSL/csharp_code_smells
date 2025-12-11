@@ -7,8 +7,21 @@ public enum SortKind
     Insertion
 }
 
+public class Swapper
+{
+    public void Swap(int[] input, int index1, int index2)
+    {
+        int first = input[index1];
+        int second = input[index2];
+        input[index1] = second;
+        input[index2] = first;
+    }
+}
+
 public class Sorter
 {
+    private readonly Swapper _swapper = new Swapper();
+
     public int[] Sort(SortKind kind, int[] input)
     {
         switch (kind)
@@ -41,7 +54,7 @@ public class Sorter
             {
                 if (input[i] > input[i + 1])
                 {
-                    Swap(input, i, i + 1);
+                    _swapper.Swap(input, i, i + 1);
                     sorted = false;
                 }
             }
@@ -56,18 +69,10 @@ public class Sorter
             {
                 if (input[j] < input[j - 1])
                 {
-                    Swap(input, j, j - 1);
+                    _swapper.Swap(input, j, j - 1);
                 }
             }
         }
-    }
-
-    private void Swap(int[] input, int index1, int index2)
-    {
-        int first = input[index1];
-        int second = input[index2];
-        input[index1] = second;
-        input[index2] = first;
     }
 
     private void QuicksortRecurse(int[] input, int left, int right)
@@ -83,7 +88,7 @@ public class Sorter
                 j--;
             if (k <= j)
             {
-                Swap(input, k, j);
+                _swapper.Swap(input, k, j);
                 k++;
                 j--;
             }
