@@ -1,12 +1,5 @@
 ﻿namespace SwitchStatements;
 
-public enum SortKind
-{
-    Bubble,
-    Quick,
-    Insertion
-}
-
 public class Swapper
 {
     public void Swap(int[] input, int index1, int index2)
