@@ -4,6 +4,8 @@ using NUnit.Framework;
 
 public static class PricerTests
 {
+    [TestCase("8.0", 5.95)]
+    [TestCase("7.9", 4.95)]
     [TestCase("7.1", 4.95)]
     [TestCase("7.0", 3.95)]
     [TestCase("5", 3.95)]
