@@ -18,13 +18,6 @@ public interface ISorter
 
 public class BubbleSorter : ISorter
 {
-    public BubbleSorter(Swapper swapper)
-    {
-        Swapper = swapper;
-    }
-
-    public Swapper Swapper { get; }
-
     public void Sort(int[] input)
     {
         bool sorted = false;
@@ -45,14 +38,7 @@ public class BubbleSorter : ISorter
 
 public class QuickSorter : ISorter
 {
-    public QuickSorter(Swapper swapper)
-    {
-        Swapper = swapper;
-    }
-
-    public Swapper Swapper { get; }
-
-    private static void QuicksortRecurse(int[] input, int left, int right, Swapper swapper)
+    private static void QuicksortRecurse(int[] input, int left, int right)
     {
         int i = left, j = right;
         int pivot = input[(left + right) / 2];
@@ -75,33 +61,24 @@ public class QuickSorter : ISorter
         int index = i;
         if (left < index - 1)
         {
-            QuicksortRecurse(input, left, index - 1, swapper);
+            QuicksortRecurse(input, left, index - 1);
         }
         if (index < right)
         {
-            QuicksortRecurse(input, index, right, swapper);
+            QuicksortRecurse(input, index, right);
         }
     }
 
     public void Sort(int[] input)
     {
-        var swapper = this.Swapper;
-        QuickSorter.QuicksortRecurse(input, 0, input.Length - 1, swapper);
+        QuickSorter.QuicksortRecurse(input, 0, input.Length - 1);
     }
 }
 
 public class InsertionSorter : ISorter
 {
-    public InsertionSorter(Swapper swapper)
-    {
-        Swapper = swapper;
-    }
-
-    public Swapper Swapper { get; }
-
     public void Sort(int[] input)
     {
-        var swapper = this.Swapper;
         for (int i = 0; i < input.Length - 1; i++)
         {
             for (int j = i + 1; j > 0; j--)
