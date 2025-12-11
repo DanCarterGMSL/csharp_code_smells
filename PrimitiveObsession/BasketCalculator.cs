@@ -8,6 +8,8 @@ public class Item
     public string[] data { get; set; }
 
     public decimal Price => decimal.Parse(data[1]);
+
+    public int Quantity => int.Parse(data[2]);
 }
 
 public static class BasketCalculator
@@ -19,7 +21,7 @@ public static class BasketCalculator
         foreach (var item in basket)
         {
             decimal price = item.Price;
-            int quantity = int.Parse(item.data[2]);
+            int quantity = item.Quantity;
 
             total += price * quantity;
         }
