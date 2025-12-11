@@ -92,6 +92,31 @@ public class QuickSorter
     }
 }
 
+public class InsertionSorter
+{
+    public InsertionSorter(Swapper swapper)
+    {
+        Swapper = swapper;
+    }
+
+    public Swapper Swapper { get; }
+
+    public void InsertionSort(int[] input)
+    {
+        var swapper = this.Swapper;
+        for (int i = 0; i < input.Length - 1; i++)
+        {
+            for (int j = i + 1; j > 0; j--)
+            {
+                if (input[j] < input[j - 1])
+                {
+                    swapper.Swap(input, j, j - 1);
+                }
+            }
+        }
+    }
+}
+
 public class Sorter
 {
     private readonly Swapper _swapper = new Swapper();
@@ -107,23 +132,9 @@ public class Sorter
                 new QuickSorter(_swapper).QuickSort(input);
                 break;
             case SortKind.Insertion:
-                InsertionSort(input, _swapper);
+                new InsertionSorter(_swapper).InsertionSort(input);
                 break;
         }
         return input;
-    }
-
-    private void InsertionSort(int[] input, Swapper swapper)
-    {
-        for (int i = 0; i < input.Length - 1; i++)
-        {
-            for (int j = i + 1; j > 0; j--)
-            {
-                if (input[j] < input[j - 1])
-                {
-                    swapper.Swap(input, j, j - 1);
-                }
-            }
-        }
     }
 }
