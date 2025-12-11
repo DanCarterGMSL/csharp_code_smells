@@ -27,7 +27,7 @@ public class Sorter
         switch (kind)
         {
             case SortKind.Bubble:
-                BubbleSort(input);
+                BubbleSort(input, _swapper);
                 break;
             case SortKind.Quick:
                 QuickSort(input);
@@ -44,7 +44,7 @@ public class Sorter
         QuicksortRecurse(input, 0, input.Length - 1);
     }
 
-    private void BubbleSort(int[] input)
+    private void BubbleSort(int[] input, Swapper swapper)
     {
         bool sorted = false;
         while (!sorted)
@@ -54,7 +54,7 @@ public class Sorter
             {
                 if (input[i] > input[i + 1])
                 {
-                    _swapper.Swap(input, i, i + 1);
+                    swapper.Swap(input, i, i + 1);
                     sorted = false;
                 }
             }
